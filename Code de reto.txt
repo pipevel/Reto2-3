@@ -1,0 +1,43 @@
+
+Table usuarios {
+  id_usuario INT [pk, increment]
+  nombre VARCHAR
+  email VARCHAR
+  contraseña VARCHAR
+  fecha_registro DATETIME
+}
+
+Table fotografias {
+  id_fotografia INT [pk, increment]
+  id_usuario INT [ref: > usuarios.id_usuario]
+  titulo VARCHAR
+  descripcion TEXT
+  fecha_subida DATETIME
+  ruta_archivo VARCHAR
+  id_categoria INT [ref: > categorias.id_categoria]
+}
+
+Table documentos {
+  id_documento INT [pk, increment]
+  id_usuario INT [ref: > usuarios.id_usuario]
+  nombre VARCHAR
+  tipo_archivo VARCHAR
+  tamaño INT
+  fecha_subida DATETIME
+  ruta_archivo VARCHAR
+  id_categoria INT [ref: > categorias.id_categoria]
+}
+
+Table categorias {
+  id_categoria INT [pk, increment]
+  nombre_categoria VARCHAR
+  descripcion TEXT
+}
+
+Table metadatos {
+  id_metadato INT [pk, increment]
+  id_fotografia INT [ref: > fotografias.id_fotografia]
+  id_documento INT [ref: > documentos.id_documento]
+  tipo_metadato VARCHAR
+  valor_metadato VARCHAR
+}
